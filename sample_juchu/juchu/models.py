@@ -12,3 +12,13 @@ class Product(models.Model):
     price = models.IntegerField(default=0)
 
     
+class Order(models.Model):
+    date = models.DateField(auto_now=True)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+
+    
+class OrderProduct(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.PROTECT)
+    quantity = models.IntegerField(default=1)
+
